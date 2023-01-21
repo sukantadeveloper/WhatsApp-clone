@@ -3,6 +3,9 @@ import { Box } from '@mui/system';
 import { GoogleLogin } from '@react-oauth/google';
 import React from 'react';
 import jwt_decode from 'jwt-decode'
+import { useContext } from 'react';
+import { AccountContext } from '../../Context/AccountContextProvider';
+import { useState } from 'react';
 const DialogStyle = {
     height: "96%",
     width: "70%",
@@ -25,17 +28,19 @@ const ListStyle = styled(List)`
     }
 `;
 function LoginBox() {
+    
+    const { SetAccountDetails } = useContext(AccountContext);
     const handleError = () => {
         console.log("Error");
     }
     const handleSuccess = (res) => {
         const decoded = jwt_decode(res.credential)
-        console.log(decoded);
+        SetAccountDetails(decoded);
     }
     return (
         <div>
-      
-            <Dialog hideBackdrop='true'
+
+            <Dialog hideBackdrop={true}
                 open={true} PaperProps={{ sx: DialogStyle }}>
                 <Box display={'flex'} justifyContent='space-around' marginTop={'50px'}>
                     <Box width={'52%'} >
