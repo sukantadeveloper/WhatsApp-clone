@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { MoreVert } from '@mui/icons-material';
 import { Menu, MenuItem, styled } from '@mui/material';
+import ProfileDrawer from '../../Drawer/ProfileDrawer';
 
 
 const MenuOption = styled(MenuItem)`
@@ -12,9 +13,8 @@ const MenuOption = styled(MenuItem)`
 
 
 const HeaderOptions = () => {
-
     const [open, setOpen] = useState(false);
-
+    const [openDrawer, setOpenDrawer] = useState(false);
     const handleClick = (event) => {
         setOpen(event.currentTarget);
     };
@@ -44,11 +44,12 @@ const HeaderOptions = () => {
                     horizontal: 'right',
                 }}
             >
-                <MenuOption >Profile</MenuOption>
+                <MenuOption onClick={()=>setOpenDrawer(true)}>Profile</MenuOption>
                 <MenuOption>
                     Logout
                 </MenuOption>
             </Menu>
+            <ProfileDrawer open={openDrawer} setOpen={setOpenDrawer} profile={true} />
         </>
     )
 }

@@ -5,6 +5,7 @@ import { Chat as MessageIcon } from '@mui/icons-material';
 
 import { AccountContext } from '../../../Context/AccountContextProvider';
 import HeaderOptions from './HeaderOptions';
+import ProfileDrawer from '../../Drawer/ProfileDrawer';
 const Parent = styled(Box)`
     height: 42px;
     background: #ededed;
@@ -36,14 +37,12 @@ function MenuHeader() {
     const { accountDetails } = useContext(AccountContext);
     console.log(accountDetails.picture, "djdk");
     console.log("hello")
-    const toggleDrawer = () => {
-        setOpenDrawer(true);
-    }
+
     return (
         <>
             <Parent>
                 <Image src={accountDetails.picture}
-                // onClick={() => toggleDrawer()}
+                 onClick={() => setOpenDrawer(true)}
                 />
                 <ChildWrapper>
                     <MessageIcon />
@@ -51,7 +50,7 @@ function MenuHeader() {
 
                 </ChildWrapper>
             </Parent>
-            {/* <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} profile={true} /> */}
+            <ProfileDrawer open={openDrawer} setOpen={setOpenDrawer} profile={true} />
         </>
     );
 }
