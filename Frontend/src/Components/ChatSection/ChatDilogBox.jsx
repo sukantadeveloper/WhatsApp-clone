@@ -4,9 +4,10 @@ import MenuHeader from './Menu/MenuHeader';
 import SearchBox from './Menu/SearchBox';
 import EmptyChat from './Chat/EmptyChat';
 import Conversations from './Menu/Conversations';
+import ChatBox from './Chat/ChatBox';
 const DialogStyle = {
-    height: '95%',
-    width: '96%',
+    height: '98%',
+    width: '100%',
     margin: '20px',
     maxWidth: '100%',
     maxHeight: '100%',
@@ -38,7 +39,7 @@ function ChatDilogBox() {
                     </LeftSide>
 
                     <RightSide>
-                        <EmptyChat />
+                      <ChatBox/>
                     </RightSide>
                 </Box>
             </Dialog>

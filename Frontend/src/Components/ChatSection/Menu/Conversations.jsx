@@ -22,17 +22,19 @@ function Conversations() {
         getData();
     }, [])
     return (
-        <div>
+        <Box height='100vh'>
             {people?.map((ele) => (
                     accountDetails.sub!=ele.sub 
                     && <> <Box display={'flex'} key={Math.random()} p='10px 30px'> 
                     <Box> <Image src={ele.picture}/> </Box>
+                    {console.log(ele.picture)}
                     <Box> <Typography pl="20px"> {ele.name}</Typography></Box>
                   </Box>
-                  <Divider/> </>
+                  <Divider/>
+                   </>
                 
             ))}
-        </div>
+        </Box>
     );
 }
 
