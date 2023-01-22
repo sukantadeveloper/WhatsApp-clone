@@ -39,7 +39,7 @@ const DescriptionBox = styled(Box)`
     }
 `;
 const Header = styled(Box)`
-  background: #008069;
+  background: #00A884;
   height: 107px;
   color: #FFFFFF;
   display: flex;
@@ -51,7 +51,7 @@ const Header = styled(Box)`
 
 const drawerStyle = {
     height: '100%',
-    width: '34%',
+    width: '415px',
     boxShadow: 'none'
 }
 

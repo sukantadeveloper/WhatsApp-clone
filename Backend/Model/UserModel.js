@@ -3,59 +3,59 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
     aud: {
         type: String,
-       // required: true
+        required: true
     },
     azp: {
         type: String,
-       // required: true
+        required: true
     },
     email: {
         type: String,
-       // required: true
+        required: true
     },
     email_verified: {
         type: Boolean,
-        //required: true
+        required: true
     },
     exp: {
         type: Number,
-      //  required: true
+        required: true
     },
     family_name: {
         type: String,
-      //  required: true
+        required: true
     },
     given_name: {
         type: String,
-       // required: true
+        required: true
     },
     iat: {
         type: Number,
-       // required: true
+        required: true
     },
     iss: {
         type: String,
-      //  required: true
+        required: true
     },
     jti: {
         type: String,
-      //  required: true
+        required: true
     },
     name: {
         type: String,
-       // required: true
+        required: true
     },
     nbf: {
         type: Number,
-       // required: true
+        required: true
     },
     picture: {
         type: String,
-       // required: true
+        required: true
     },
     sub: {
         type: String,
-      //  required: true
+        required: true
     }
 })
 

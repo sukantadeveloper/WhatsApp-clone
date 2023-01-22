@@ -2,9 +2,11 @@ import React from 'react';
 import { Dialog, List, ListItem, Typography, styled, Box } from '@mui/material';
 import MenuHeader from './Menu/MenuHeader';
 import SearchBox from './Menu/SearchBox';
+import EmptyChat from './Chat/EmptyChat';
+import Conversations from './Menu/Conversations';
 const DialogStyle = {
     height: '95%',
-    width: '100%',
+    width: '96%',
     margin: '20px',
     maxWidth: '100%',
     maxHeight: '100%',
@@ -13,7 +15,7 @@ const DialogStyle = {
     overflow: 'hidden'
 }
 const LeftSide = styled(Box)`
-    min-width: 450px;
+    min-width: 400px;
 `;
 
 const RightSide = styled(Box)`
@@ -28,14 +30,15 @@ function ChatDilogBox() {
             <Dialog hideBackdrop={true}
                 open={true} PaperProps={{ sx: DialogStyle }}>
                 <Box display={'flex'} justifyContent='space-around' >
-
+           
                     <LeftSide>
-                     <MenuHeader/>
-                      <SearchBox/>
+                        <MenuHeader />
+                        <SearchBox />
+                        <Conversations/>
                     </LeftSide>
 
                     <RightSide>
-                        f
+                        <EmptyChat />
                     </RightSide>
                 </Box>
             </Dialog>

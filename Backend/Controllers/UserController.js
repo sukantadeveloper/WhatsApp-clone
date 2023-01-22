@@ -1,30 +1,30 @@
 import User from "../Model/UserModel.js";
 
 
-export const addUser = async (request, response) => {
+export const addUser = async (req, res) => {
     try {
-        let exist = await User.findOne({ sub: request.body.sub });
+        let exist = await User.findOne({ sub: req.body.sub });
 
         if(exist) {
-           return response.status(200).send('user already exists');
+           return res.status(200).send('user already exists');
            
         }
 
-        const newUser =   await User.create(request.body);
+        const newUser =   await User.create(req.body);
        // await newUser.save();
-        response.status(200).send(newUser);
+        res.status(200).send(newUser);
         console.log("done")
 
     } catch (error) {
-        response.status(500).send(error);
+        res.status(500).send(error);
     }
 }
 
-export const getUser = async (request, response) => {
+export const getUser = async (req, res) => {
     try {
         const user = await User.find({});
-        response.status(200).send(user);
+        res.status(200).send(user);
     } catch (error) {
-        response.status(500).send(error);
+        res.status(500).send(error);
     }
 }

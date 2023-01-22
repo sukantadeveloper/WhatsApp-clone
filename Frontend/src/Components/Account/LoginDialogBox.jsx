@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode'
 import { useContext } from 'react';
 import { AccountContext } from '../../Context/AccountContextProvider';
 import { useState } from 'react';
+import { addUser } from '../AllApi/Api';
 const DialogStyle = {
     height: "96%",
     width: "70%",
@@ -28,13 +29,15 @@ const ListStyle = styled(List)`
     }
 `;
 function LoginBox() {
-    
+
     const { SetAccountDetails } = useContext(AccountContext);
     const handleError = () => {
         console.log("Error");
     }
     const handleSuccess = (res) => {
         const decoded = jwt_decode(res.credential)
+        addUser(decoded);
+       console.log(decoded);
         SetAccountDetails(decoded);
     }
     return (
