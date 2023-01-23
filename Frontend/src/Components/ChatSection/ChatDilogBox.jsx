@@ -30,7 +30,6 @@ const RightSide = styled(Box)`
 `;
 function ChatDilogBox() {
     const[searchKey, setSearchKey]=useState('');
-    console.log(searchKey);
     const { person } = useContext(AccountContext);
     return (
         <div>

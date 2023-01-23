@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { AccountContext } from '../../../Context/AccountContextProvider';
-import { getConversation, newMessage } from '../../AllApi/Api';
+import { getConversation, getMessages, newMessage } from '../../AllApi/Api';
 import ChatFooter from './ChatFooter';
 import ChatHead from './ChatHead';
 import Messages from './Messages';
@@ -12,6 +12,8 @@ function ChatBox() {
     const { accountDetails, person } = useContext(AccountContext);
     const [Text, setText] = useState()
     const [conversation, setConversation] = useState('');
+    const [message, setMessage] = useState([])
+const[realTimeView,setRealTimeView]=useState(false)    
     const storeMessage = async (e) => {
         if (e.key == "Enter") {
             let message = {
@@ -23,25 +25,32 @@ function ChatBox() {
             }
             await newMessage(message)
             setText('');
-            console.log(message, "24 line")
+            setRealTimeView(p=>!p);
+
         }
 
     }
 
     const getConversationDetails = async () => {
         const data = await getConversation({ senderId: accountDetails.sub, receiverId: person.sub })
-        console.log(data, "28line")
         setConversation(data);
     }
-    console.log(conversation?._id, "line no 36")
+    const getMessageDetails = async () => {
+        const data = await getMessages(conversation._id)
+        setMessage(data);
+    }
+
     useEffect(() => {
         getConversationDetails();
-    }, [person.sub])
+        conversation?._id && getMessageDetails();
+    }, [person?._id, conversation?._id,realTimeView])
+
+    console.log(message,"all message");
     return (
         <div>
             <ChatHead />
             <Box pt="60px">
-                <Messages />
+                <Messages message={message} />
             </Box>
             <ChatFooter storeMessage={storeMessage} setText={setText} value={Text} />
         </div>

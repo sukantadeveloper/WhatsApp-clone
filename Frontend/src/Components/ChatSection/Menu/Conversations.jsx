@@ -26,7 +26,6 @@ function Conversations({ searchKey }) {
         setPerson(ele)
         await setConversation({ senderId: accountDetails.sub, receiverId: ele.sub });
     }
-    console.log(person, "lets see person");
     return (
         <Box height='100vh'>
             {people?.map((ele) => (
