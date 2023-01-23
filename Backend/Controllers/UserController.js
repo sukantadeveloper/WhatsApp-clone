@@ -13,7 +13,7 @@ export const addUser = async (req, res) => {
         const newUser =   await User.create(req.body);
        // await newUser.save();
         res.status(200).send(newUser);
-        console.log("done")
+     
 
     } catch (error) {
         res.status(500).send(error);
