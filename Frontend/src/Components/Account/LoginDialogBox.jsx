@@ -37,7 +37,6 @@ function LoginBox() {
     const handleSuccess = (res) => {
         const decoded = jwt_decode(res.credential)
         addUser(decoded);
-       console.log(decoded);
         SetAccountDetails(decoded);
     }
     return (

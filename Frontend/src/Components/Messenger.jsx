@@ -16,6 +16,12 @@ var ChatHeader = styled(AppBar)`
   box-shadow: none;
   background-color: #00A884;
 `;
+const Image=styled('img')({
+       width:'45px'
+       
+})
+ 
+
 function Messenger() {
     const { accountDetails } = useContext(AccountContext);
     return (
@@ -29,8 +35,12 @@ function Messenger() {
               :
                 <Box sx={{ bgcolor: "#DCDCDC", height: "100vh" }}>
                     <Header>
-                        <Toolbar>
-                            <Typography> WHATSAPP WEB</Typography>
+                        <Toolbar >
+                            <Box  display={'flex'} alignItems='center' width={'70%'}  margin={'auto'} pt={'20px'}> 
+                            <Image src="https://www.freepnglogos.com/uploads/whatsapp-logo-png-hd-2.png" alt="" />
+                              <Typography pl={'15px'} fontSize='25px'> WHATSAPP WEB</Typography>
+                            </Box>
+                          
                         </Toolbar>
                     </Header>
 

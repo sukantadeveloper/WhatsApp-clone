@@ -5,7 +5,10 @@ import SearchBox from './Menu/SearchBox';
 import EmptyChat from './Chat/EmptyChat';
 import Conversations from './Menu/Conversations';
 import ChatBox from './Chat/ChatBox';
-const DialogStyle = {
+import { useContext } from 'react';
+import { AccountContext } from '../../Context/AccountContextProvider';
+import { useState } from 'react';
+const DialogBoxStyle = {
     height: '98%',
     width: '100%',
     margin: '20px',
@@ -26,20 +29,25 @@ const RightSide = styled(Box)`
     border-left: 1px solid rgba(0, 0, 0, 0.14);
 `;
 function ChatDilogBox() {
+    const[searchKey, setSearchKey]=useState('');
+    console.log(searchKey);
+    const { person } = useContext(AccountContext);
     return (
         <div>
             <Dialog hideBackdrop={true}
-                open={true} PaperProps={{ sx: DialogStyle }}>
+                open={true} PaperProps={{ sx: DialogBoxStyle }}>
                 <Box display={'flex'} justifyContent='space-around' >
-           
+
                     <LeftSide>
                         <MenuHeader />
-                        <SearchBox />
-                        <Conversations/>
+                        <SearchBox setSearchKey={setSearchKey}/>
+                        <Conversations searchKey={searchKey}/>
                     </LeftSide>
 
                     <RightSide>
-                      <ChatBox/>
+                        {
+                            Object.keys(person).length ? <ChatBox /> : <EmptyChat />
+                        }
                     </RightSide>
                 </Box>
             </Dialog>

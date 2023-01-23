@@ -1,6 +1,6 @@
 import express from "express";
 import { getConversation, newConversation } from "../Controllers/ConversationController.js";
-import { newMessage } from "../Controllers/MessageController.js";
+import { getMessage, newMessage } from "../Controllers/MessageController.js";
 import { addUser, getUser } from "../Controllers/UserController.js";
 
 const route = express.Router();
@@ -11,4 +11,5 @@ route.get("/users", getUser);
 route.post("/conversation/add", newConversation);
 route.post("/conversation/get", getConversation);
 route.post("/message/add", newMessage)
+route.get("/message/get/:id",getMessage)
 export default route;

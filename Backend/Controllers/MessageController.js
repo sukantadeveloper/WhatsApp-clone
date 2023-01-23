@@ -17,8 +17,10 @@ export const newMessage = async (req, res) => {
 
 export const getMessage = async (req, res) => {
   try {
-    
+    const data=await message.find({conversationId: req.params.id})
+    console.log(data,"d")
+     return res.status(200).send(data);
   } catch (error) {
-    
+     return res.status(500).send(error.message)
   }
 };

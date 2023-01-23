@@ -35,8 +35,7 @@ function MenuHeader() {
     const [openDrawer, setOpenDrawer] = useState(false);
 
     const { accountDetails } = useContext(AccountContext);
-    console.log(accountDetails.picture, "djdk");
-    console.log("hello")
+
 
     return (
         <>

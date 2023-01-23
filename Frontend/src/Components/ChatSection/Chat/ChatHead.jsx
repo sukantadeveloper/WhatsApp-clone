@@ -1,4 +1,4 @@
-import { Box, styled } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
@@ -34,22 +34,26 @@ const Image = styled('img')({
 })
 function ChatHead() {
 
-    const { accountDetails } = useContext(AccountContext);
+    const { person } = useContext(AccountContext);
 
 
     return (
         <>
             <Parent>
-                <Image src={accountDetails.picture}
-             
+                <Image src={person.picture}
+
                 />
+                <Box pl="15px" >
+                    <Typography fontSize={'15px'}>{person.name}</Typography>
+                    <Typography fontSize={'12px'}> Online</Typography>
+                </Box>
                 <ChildWrapper>
                     <SearchIcon />
                     <HeaderOptions />
 
                 </ChildWrapper>
             </Parent>
-         
+
         </>
     );
 }
