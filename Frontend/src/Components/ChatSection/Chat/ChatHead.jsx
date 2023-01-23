@@ -43,9 +43,9 @@ function ChatHead() {
                 <Image src={person.picture}
 
                 />
-                <Box pl="15px" >
-                    <Typography fontSize={'15px'}>{person.name}</Typography>
-                    <Typography fontSize={'12px'}> Online</Typography>
+                <Box pl="15px" fontStyle={'oblique'}>
+                    <Typography fontSize={'15px'} fontFamily={'Lora'}>{person.name}</Typography>
+                    <Typography fontSize={'12px'} fontFamily={'Lora'}> Online</Typography>
                 </Box>
                 <ChildWrapper>
                     <SearchIcon />

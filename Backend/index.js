@@ -7,9 +7,10 @@ const app = express();
 app.use(express.json());
 
 connection();
+app.use(cors());
 app.listen(3002, () => {
   console.log("Listing");
 });
 
-app.use(cors());
+
 app.use("/", route);

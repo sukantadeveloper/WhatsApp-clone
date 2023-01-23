@@ -11,9 +11,12 @@ import Messages from './Messages';
 function ChatBox() {
     const { accountDetails, person } = useContext(AccountContext);
     const [Text, setText] = useState()
+    const [file, setFile] = useState();
+    const [image, setImage] = useState();
+
     const [conversation, setConversation] = useState('');
     const [message, setMessage] = useState([])
-const[realTimeView,setRealTimeView]=useState(false)    
+    const [realTimeView, setRealTimeView] = useState(false)
     const storeMessage = async (e) => {
         if (e.key == "Enter") {
             let message = {
@@ -25,12 +28,12 @@ const[realTimeView,setRealTimeView]=useState(false)
             }
             await newMessage(message)
             setText('');
-            setRealTimeView(p=>!p);
+            setRealTimeView(p => !p);
 
         }
 
     }
-
+console.log(image,"image")
     const getConversationDetails = async () => {
         const data = await getConversation({ senderId: accountDetails.sub, receiverId: person.sub })
         setConversation(data);
@@ -43,18 +46,19 @@ const[realTimeView,setRealTimeView]=useState(false)
     useEffect(() => {
         getConversationDetails();
         conversation?._id && getMessageDetails();
-    }, [person?._id, conversation?._id,realTimeView])
+    }, [person?._id, conversation?._id, realTimeView])
 
-    console.log(message,"all message");
+    console.log(message, "all message");
     return (
-        <div>
+        <Box >
             <ChatHead />
             <Box pt="60px">
                 <Messages message={message} />
             </Box>
-            <ChatFooter storeMessage={storeMessage} setText={setText} value={Text} />
-        </div>
+            <ChatFooter storeMessage={storeMessage} setText={setText} value={Text} file={file} setFile={setFile} setImage={setImage}/>
+        </Box>
     );
 }
 
 export default ChatBox;
+

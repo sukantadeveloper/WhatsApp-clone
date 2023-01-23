@@ -8,6 +8,18 @@ const Image = styled('img')({
     height: "45px",
     borderRadius: '50%'
 })
+
+const boxSX = {
+    "&:hover": {
+     
+        backgroundColor: 'silver'
+    },
+    padding:"10px 30px",
+    cursor:"pointer"
+};
+
+
+
 function Conversations({ searchKey }) {
     const { person, setPerson } = useContext(AccountContext);
     const { accountDetails } = useContext(AccountContext);
@@ -19,6 +31,7 @@ function Conversations({ searchKey }) {
     }
 
 
+
     useEffect(() => {
         getData();
     }, [searchKey])
@@ -27,14 +40,14 @@ function Conversations({ searchKey }) {
         await setConversation({ senderId: accountDetails.sub, receiverId: ele.sub });
     }
     return (
-        <Box height='100vh'>
+        <Box height='100vh' >
             {people?.map((ele) => (
                 <Box key={Math.random()}>
                     {accountDetails.sub != ele.sub
                         &&
-                        <> <Box display={'flex'} key={Math.random()} p='10px 30px' onClick={() => sendUser(ele)}>
+                        <> <Box display={'flex'} onClick={() => sendUser(ele)} sx={boxSX} >
                             <Box> <Image src={ele.picture} /> </Box>
-                            <Box> <Typography pl="20px"> {ele.name}</Typography></Box>
+                            <Box> <Typography pl="20px" fontFamily={'Lora'}> {ele.name}</Typography></Box>
                         </Box>
                             <Divider />
                         </>} </Box>

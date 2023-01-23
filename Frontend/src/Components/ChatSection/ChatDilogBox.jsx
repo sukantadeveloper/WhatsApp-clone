@@ -32,7 +32,7 @@ function ChatDilogBox() {
     const[searchKey, setSearchKey]=useState('');
     const { person } = useContext(AccountContext);
     return (
-        <div>
+        <Box>
             <Dialog hideBackdrop={true}
                 open={true} PaperProps={{ sx: DialogBoxStyle }}>
                 <Box display={'flex'} justifyContent='space-around' >
@@ -50,7 +50,7 @@ function ChatDilogBox() {
                     </RightSide>
                 </Box>
             </Dialog>
-        </div>
+        </Box>
     );
 }
 
