@@ -19,6 +19,7 @@ function ChatBox() {
     const [message, setMessage] = useState([])
     const [realTimeView, setRealTimeView] = useState(false)
     const storeMessage = async (e) => {
+        if(!Text) return 
         if (e.key == "Enter") {
             let message;
             if (file) {

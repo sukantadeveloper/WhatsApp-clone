@@ -2,7 +2,7 @@ import { Box, styled, Typography } from '@mui/material';
 import React from 'react';
 import { useContext } from 'react';
 import { AccountContext } from '../../../Context/AccountContextProvider';
-import { FormatDate } from '../../CommonFile/FormatData';
+import { FormatDate } from '../../CommonFile/FormatDate';
 import '../../Styles/Message.css'
 import ImageFile from './Message/ImageFile';
 import TextFile from './Message/TextFile';

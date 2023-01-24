@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { FormatDate } from '../../../CommonFile/FormatData';
+import { FormatDate } from '../../../CommonFile/FormatDate';
 
 
 function TextFile({ ele }) {

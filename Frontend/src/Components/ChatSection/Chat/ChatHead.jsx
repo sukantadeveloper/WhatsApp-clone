@@ -39,7 +39,7 @@ function ChatHead() {
 
     return (
         <>
-            <Parent>
+            <Parent width={{sm:"65%", md:"54%",lg:"65%"}}>
                 <Image src={person.picture}
 
                 />
