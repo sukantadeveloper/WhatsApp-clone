@@ -18,7 +18,6 @@ export const uploadFile = async (req, res) => {
     return res.status(404).send("File not found");
   }
   const imageUrl = `${url}/file/${req.file.filename}`;
-  console.log("Uploaded");
   return res.status(200).send(imageUrl);
 };
 

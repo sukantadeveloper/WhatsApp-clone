@@ -27,7 +27,6 @@ function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
             data.append("file", file);
             const response = await uploadFile(data);
             setImage(response.data);
-            console.log(response.data, "i want to see data")
         }
     }
     useEffect(() => {
@@ -37,7 +36,6 @@ function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
     const onFileChange = (e) => {
         setText(e.target.files[0].name);
         setFile(e.target.files[0]);
-        console.log(e.target.files, "filess")
     }
 
     return (
@@ -52,6 +50,7 @@ function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
                     id="fileInput"
                     style={{ display: 'none' }}
                     onChange={(e) => onFileChange(e)}
+                    
                 />
             </Box>
             <Box width="80%"> <InputField onChange={(e) => setText(e.target.value)} value={value} onKeyPress={storeMessage} type='text' placeholder='Type a message' inputProps={{ 'aria-label': 'search' }} /></Box>
