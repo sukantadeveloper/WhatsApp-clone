@@ -50,7 +50,7 @@ function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
                     id="fileInput"
                     style={{ display: 'none' }}
                     onChange={(e) => onFileChange(e)}
-                    
+
                 />
             </Box>
             <Box width="80%"> <InputField onChange={(e) => setText(e.target.value)} value={value} onKeyPress={storeMessage} type='text' placeholder='Type a message' inputProps={{ 'aria-label': 'search' }} /></Box>

@@ -1,6 +1,6 @@
 import { SetMealOutlined } from '@mui/icons-material';
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { AccountContext } from '../../../Context/AccountContextProvider';
@@ -10,16 +10,38 @@ import ChatHead from './ChatHead';
 import MessageBox from './MessageBox';
 
 function ChatBox() {
-    const { accountDetails, person } = useContext(AccountContext);
+    const { accountDetails, person, socket } = useContext(AccountContext);
     const [Text, setText] = useState()
     const [file, setFile] = useState();
     const [image, setImage] = useState();
-    console.log(image)
     const [conversation, setConversation] = useState('');
     const [message, setMessage] = useState([])
     const [realTimeView, setRealTimeView] = useState(false)
+    const [incommingMessages, setincommingMessages] = useState()
+    const scrollRef = useRef();
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({ transition: "smooth" })
+        console.log(message, "m")
+    }, [message]);
+
+    useEffect(() => {
+        socket.current.on("getMessage", data => {
+            setincommingMessages({
+                ...data,
+                updatedAt: Date.now()
+
+            })
+        })
+    }, [])
+    useEffect(() => {
+        incommingMessages && conversation?.members?.includes(incommingMessages.senderId)
+            && setMessage(prev => [...prev, incommingMessages])
+    }, [incommingMessages, conversation])
+
+    console.log("Text", Text)
+    console.log(file, "file");
     const storeMessage = async (e) => {
-        if(!Text) return 
+        if (!Text) return
         if (e.key == "Enter") {
             let message;
             if (file) {
@@ -39,10 +61,12 @@ function ChatBox() {
                     text: Text
                 }
             }
+            socket.current.emit("sendMessage", message);
+
             await newMessage(message)
             setText('');
             setImage('');
-
+            setFile('');
             setRealTimeView(p => !p);
 
         }
@@ -66,10 +90,12 @@ function ChatBox() {
         conversation?._id && getMessageDetails();
     }, [person?._id, conversation?._id, realTimeView])
 
+
+
     return (
         <Box >
             <ChatHead />
-            <Box pt="60px">
+            <Box pt="60px" ref={scrollRef}>
                 <MessageBox message={message} />
             </Box>
             <ChatFooter storeMessage={storeMessage} setText={setText} value={Text} file={file} setFile={setFile} setImage={setImage} />

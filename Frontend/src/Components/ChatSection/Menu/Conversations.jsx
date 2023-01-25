@@ -21,8 +21,7 @@ const boxSX = {
 
 
 function Conversations({ searchKey }) {
-    const { person, setPerson } = useContext(AccountContext);
-    const { accountDetails } = useContext(AccountContext);
+    const { person, setPerson ,accountDetails,socket,activeUsers, setActiveUsers} = useContext(AccountContext);
     const [people, setPeople] = useState([])
     async function getData() {
         const data = await GetUser();
@@ -39,6 +38,13 @@ function Conversations({ searchKey }) {
         setPerson(ele)
         await setConversation({ senderId: accountDetails.sub, receiverId: ele.sub });
     }
+
+    useEffect(()=>{
+        socket.current.emit('addUsers',accountDetails)
+        socket.current.on("getUsers",users=>{
+            setActiveUsers(users)
+        })
+    },[accountDetails])
     return (
         <Box height='100vh' >
             {people?.map((ele) => (

@@ -23,13 +23,13 @@ function ImageFile({ ele }) {
             </Box>
             : <Box >
                 <Image src={ele.text} alt="" />
-              
 
-                    <Box  alignItems={'flex-end'} display={'flex'} >
-                        <Box border={'2px solid grey'} margin='2px' borderRadius={'50%'} onClick={(e) => downloadMedia(e, ele.text)}> 
-                         <DownloadIcon /> </Box>
-                       <Typography fontSize={'10px'}> <FormatDate date={ele.updatedAt} /></Typography>  </Box>
-              
+
+                <Box alignItems={'flex-end'} display={'flex'} >
+                    <Box border={'2px solid grey'} margin='2px' borderRadius={'50%'} onClick={(e) => downloadMedia(e, ele.text)}>
+                        <DownloadIcon /> </Box>
+                    <Typography fontSize={'10px'}> <FormatDate date={ele.updatedAt} /></Typography>  </Box>
+
             </Box>
 
         }

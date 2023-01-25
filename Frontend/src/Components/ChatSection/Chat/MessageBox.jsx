@@ -1,11 +1,11 @@
 import { Box, styled, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useRef } from 'react';
 import { useContext } from 'react';
 import { AccountContext } from '../../../Context/AccountContextProvider';
-import { FormatDate } from '../../CommonFile/FormatDate';
-import '../../Styles/Message.css'
 import ImageFile from './Message/ImageFile';
 import TextFile from './Message/TextFile';
+import "../../Styles/Message.css"
 const ParentWrapper = styled(Box)`
     background-image: url(${'https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'});
     background-size: 50%;
@@ -30,21 +30,27 @@ const SenderMessage = styled(Box)`
     word-break: break-word;
 `;
 function MessageBox({ message }) {
+    const scrollRef = useRef();
     const { accountDetails } = useContext(AccountContext);
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({ transition: "smooth" })
+        console.log(message, "m")
+    }, [message]);
+
     return (
         <ParentWrapper height="76vh" overflow={'scroll'} className="parent" padding='10px 20px' >
 
 
             {message?.map((ele) => (
-                <Box key={Math.random()}>
+                <Box key={Math.random()} ref={scrollRef}>
                     {ele.senderId == accountDetails.sub ?
-                        <SenderMessage mb={'5px'}>
+                        <SenderMessage mb={'5px'} >
                             {ele.type == "file" ? <ImageFile ele={ele} /> :
                                 <TextFile ele={ele} />}
                         </SenderMessage>
 
                         : <ReceviderMessage mb={'5px'}>
-                           {ele.type == "file" ? <ImageFile ele={ele} /> :
+                            {ele.type == "file" ? <ImageFile ele={ele} /> :
                                 <TextFile ele={ele} />}
                         </ReceviderMessage>}
                 </Box>
