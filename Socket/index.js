@@ -2,7 +2,7 @@ import { Server } from 'socket.io';
 
 const io = new Server(8000, {
     cors: {
-        origin: 'https://new-whatsapp.netlify.app',
+        origin: 'http://localhost:3000',
     }, 
 })
 
@@ -25,6 +25,7 @@ const getUser = (userId) => {
 
 
 io.on('connection',  (socket) => {
+
     console.log('user connected')
     //connect or when someone loged in 
     socket.on("addUsers", userData => {
@@ -32,12 +33,13 @@ io.on('connection',  (socket) => {
         io.emit("getUsers", users);
     })
 
-    
+
     //send message
     socket.on('sendMessage', (data) => {
         const user = getUser(data.receiverId);
         io.to(user.socketId).emit('getMessage', data)
     })
+
 
     //disconnect user or leave our app 
     socket.on('disconnect', () => {
@@ -45,4 +47,5 @@ io.on('connection',  (socket) => {
         removeUser(socket.id);
         io.emit('getUsers', users);
     })
+
 })
