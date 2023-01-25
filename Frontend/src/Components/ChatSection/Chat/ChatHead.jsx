@@ -37,7 +37,7 @@ function ChatHead() {
 
     const { person,activeUsers } = useContext(AccountContext);
 
-  console.log(activeUsers,"active");
+
     return (
         <>
             <Parent width={{sm:"65%", md:"54%",lg:"65%"}} zIndex="1500">

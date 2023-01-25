@@ -21,7 +21,6 @@ function ChatBox() {
     const scrollRef = useRef();
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ transition: "smooth" })
-        console.log(message, "m")
     }, [message]);
 
     useEffect(() => {
@@ -38,8 +37,6 @@ function ChatBox() {
             && setMessage(prev => [...prev, incommingMessages])
     }, [incommingMessages, conversation])
 
-    console.log("Text", Text)
-    console.log(file, "file");
     const storeMessage = async (e) => {
         if (!Text) return
         if (e.key == "Enter") {

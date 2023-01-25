@@ -34,7 +34,7 @@ function MessageBox({ message }) {
     const { accountDetails } = useContext(AccountContext);
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ transition: "smooth" })
-        console.log(message, "m")
+     
     }, [message]);
 
     return (
