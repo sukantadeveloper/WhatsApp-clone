@@ -23,7 +23,8 @@ const Image=styled('img')({
  
 
 function Messenger() {
-    const { accountDetails } = useContext(AccountContext);
+    const { accountDetails,setLogout,logout } = useContext(AccountContext);
+    console.log(accountDetails,"27")
     return (
         <>
             {accountDetails?.email_verified ?

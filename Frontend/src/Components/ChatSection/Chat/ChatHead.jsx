@@ -12,7 +12,6 @@ const Parent = styled(Box)`
     padding: 9px 17px;
     align-items: center;
     position:fixed;
-    width:65%;
   
 `;
 const ChildWrapper = styled(Box)`
@@ -35,18 +34,18 @@ const Image = styled('img')({
 })
 function ChatHead() {
 
-    const { person,activeUsers } = useContext(AccountContext);
+    const { person, activeUsers } = useContext(AccountContext);
 
 
     return (
         <>
-            <Parent width={{sm:"65%", md:"54%",lg:"65%"}} zIndex="1500">
+            <Parent width={{ sm: "65%", md: "67%", lg: "68%" }} zIndex="1500">
                 <Image src={person.picture}
 
                 />
                 <Box pl="15px" fontStyle={'oblique'}>
                     <Typography fontSize={'15px'} fontFamily={'Lora'}>{person.name}</Typography>
-                    <Typography fontSize={'12px'} fontFamily={'Lora'}> {activeUsers?.find(user=>user.sub==person.sub)?"Online":"Offline"}</Typography>
+                    <Typography fontSize={'12px'} fontFamily={'Lora'}> {activeUsers?.find(user => user.sub == person.sub) ? "Online" : "Offline"}</Typography>
                 </Box>
                 <ChildWrapper>
                     <SearchIcon />

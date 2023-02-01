@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { MoreVert } from '@mui/icons-material';
 import { Menu, MenuItem, styled } from '@mui/material';
 import ProfileDrawer from '../../Drawer/ProfileDrawer';
+import { useEffect } from 'react';
+import { AccountContext } from '../../../Context/AccountContextProvider';
 
 
 const MenuOption = styled(MenuItem)`
@@ -23,8 +25,10 @@ const HeaderOptions = () => {
         setOpen(null);
     };
 
-
-
+    const handleLogout = () => {
+        sessionStorage.clear("user");
+        window.location.reload();
+    }
 
     return (
         <>
@@ -44,8 +48,8 @@ const HeaderOptions = () => {
                     horizontal: 'right',
                 }}
             >
-                <MenuOption onClick={()=>setOpenDrawer(true)}>Profile</MenuOption>
-                <MenuOption>
+                <MenuOption onClick={() => setOpenDrawer(true)}>Profile</MenuOption>
+                <MenuOption onClick={handleLogout}>
                     Logout
                 </MenuOption>
             </Menu>

@@ -19,12 +19,11 @@ const DialogBoxStyle = {
     overflow: 'hidden'
 }
 const LeftSide = styled(Box)`
-    min-width: 400px;
+    width:27% ;
 `;
 
 const RightSide = styled(Box)`
     width: 73%;
-    min-width: 300px;
     height: 100%;
     border-left: 1px solid rgba(0, 0, 0, 0.14);
 `;

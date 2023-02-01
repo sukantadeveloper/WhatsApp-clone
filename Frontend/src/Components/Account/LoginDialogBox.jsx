@@ -31,7 +31,7 @@ const ListStyle = styled(List)`
 `;
 function LoginBox() {
     var aa = JSON.parse(sessionStorage.getItem("user"))
-    const { SetAccountDetails, accountDetails } = useContext(AccountContext);
+    const { SetAccountDetails, accountDetails, logout } = useContext(AccountContext);
     const [send, setSend] = useState();
     const handleError = () => {
         console.log("Error");
@@ -44,7 +44,9 @@ function LoginBox() {
     }
     useEffect(() => {
         SetAccountDetails(aa);
-    }, [send])
+        console.log(logout, "logout")
+        console.log(accountDetails, "ac");
+    }, [send, logout])
 
     return (
         <div>
