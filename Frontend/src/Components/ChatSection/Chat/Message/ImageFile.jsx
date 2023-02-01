@@ -5,7 +5,7 @@ import { downloadMedia } from '../../../CommonFile/DownloadMedia';
 import { FormatDate } from '../../../CommonFile/FormatDate';
 import DownloadIcon from '@mui/icons-material/Download';
 const Image = styled('img')({
-    width: '300px',
+   width:"300px",
 
 })
 
@@ -21,11 +21,11 @@ function ImageFile({ ele }) {
                         <FormatDate date={ele.updatedAt} /> </Box>
                 </Box>
             </Box>
-            : <Box >
+            : <Box display={'flex'} flexDirection='column' alignItems={'end'}>
                 <Image src={ele.text} alt="" />
 
 
-                <Box alignItems={'flex-end'} display={'flex'} >
+                <Box display={'flex'} width='70px' alignItems={'end'} >
                     <Box border={'2px solid grey'} margin='2px' borderRadius={'50%'} onClick={(e) => downloadMedia(e, ele.text)}>
                         <DownloadIcon /> </Box>
                     <Typography fontSize={'10px'}> <FormatDate date={ele.updatedAt} /></Typography>  </Box>

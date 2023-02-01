@@ -32,6 +32,8 @@ function ChatBox() {
             })
         })
     }, [])
+
+
     useEffect(() => {
         incommingMessages && conversation?.members?.includes(incommingMessages.senderId)
             && setMessage(prev => [...prev, incommingMessages])
@@ -41,7 +43,7 @@ function ChatBox() {
         if (!Text) return
         if (e.key == "Enter") {
             let message;
-            if (file) {
+            if (file!=null) {
                 message = {
                     senderId: accountDetails?.sub,
                     receiverId: person?.sub,
@@ -49,7 +51,7 @@ function ChatBox() {
                     type: 'file',
                     text: image
                 }
-            } else {
+            } else if(Text!=null) {
                 message = {
                     senderId: accountDetails?.sub,
                     receiverId: person?.sub,
@@ -58,9 +60,9 @@ function ChatBox() {
                     text: Text
                 }
             }
+            if(message!="") { 
             socket.current.emit("sendMessage", message);
-
-            await newMessage(message)
+            await newMessage(message) }
             setText('');
             setImage('');
             setFile('');
@@ -83,11 +85,12 @@ function ChatBox() {
     }
 
     useEffect(() => {
-        getConversationDetails();
-        conversation?._id && getMessageDetails();
+        getMessageDetails();
     }, [person?._id, conversation?._id, realTimeView])
 
-
+    useEffect(() => {
+        getConversationDetails();
+    }, [person?.sub])
 
     return (
         <Box >

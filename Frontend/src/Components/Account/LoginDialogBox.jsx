@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { AccountContext } from '../../Context/AccountContextProvider';
 import { useState } from 'react';
 import { addUser } from '../AllApi/Api';
+import { useEffect } from 'react';
 const DialogStyle = {
     height: "96%",
     width: "70%",
@@ -29,16 +30,22 @@ const ListStyle = styled(List)`
     }
 `;
 function LoginBox() {
-
-    const { SetAccountDetails } = useContext(AccountContext);
+    var aa = JSON.parse(sessionStorage.getItem("user"))
+    const { SetAccountDetails, accountDetails } = useContext(AccountContext);
+    const [send, setSend] = useState();
     const handleError = () => {
         console.log("Error");
     }
     const handleSuccess = (res) => {
         const decoded = jwt_decode(res.credential)
         addUser(decoded);
-        SetAccountDetails(decoded);
+        sessionStorage.setItem("user", JSON.stringify(decoded))
+        setSend(decoded);
     }
+    useEffect(() => {
+        SetAccountDetails(aa);
+    }, [send])
+
     return (
         <div>
 

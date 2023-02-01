@@ -13,9 +13,12 @@ function AccountContextProvider({ children }) {
     const [activeUsers, setActiveUsers] = useState([]);
 
     const socket = useRef();
+
     useEffect(() => {
-        socket.current = io('ws://localhost:8000')
+        socket.current = io('https://whatsappsocket-cbak.onrender.com');
     }, [])
+    
+
     return (
         <AccountContext.Provider value={{ socket,activeUsers, setActiveUsers, accountDetails, SetAccountDetails, person, setPerson }}>
             {children}

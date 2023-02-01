@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { GetUser, setConversation } from '../../AllApi/Api';
-import { Box, Divider, styled, Typography } from '@mui/material'
+import { Box, Divider, Skeleton, styled, Typography } from '@mui/material'
 import { AccountContext } from '../../../Context/AccountContextProvider';
 const Image = styled('img')({
     width: '45px',
@@ -11,24 +11,23 @@ const Image = styled('img')({
 
 const boxSX = {
     "&:hover": {
-     
+
         backgroundColor: 'silver'
     },
-    padding:"10px 30px",
-    cursor:"pointer"
+    padding: "10px 30px",
+    cursor: "pointer"
 };
 
 
 
 function Conversations({ searchKey }) {
-    const { person, setPerson ,accountDetails,socket,activeUsers, setActiveUsers} = useContext(AccountContext);
+    const { person, setPerson, accountDetails, socket, activeUsers, setActiveUsers } = useContext(AccountContext);
     const [people, setPeople] = useState([])
     async function getData() {
         const data = await GetUser();
         let fiteredData = data.filter(user => user.name.toLowerCase().includes(searchKey.toLowerCase()));
         setPeople(fiteredData);
     }
-
 
 
     useEffect(() => {
@@ -39,26 +38,30 @@ function Conversations({ searchKey }) {
         await setConversation({ senderId: accountDetails.sub, receiverId: ele.sub });
     }
 
-    useEffect(()=>{
-        socket.current.emit('addUsers',accountDetails)
-        socket.current.on("getUsers",users=>{
+    useEffect(() => {
+        socket.current.emit('addUsers', accountDetails)
+        socket.current.on("getUsers", users => {
             setActiveUsers(users)
         })
-    },[accountDetails])
+    }, [accountDetails])
+
     return (
         <Box height='100vh' >
-            {people?.map((ele) => (
-                <Box key={Math.random()}>
-                    {accountDetails.sub != ele.sub
-                        &&
-                        <> <Box display={'flex'} onClick={() => sendUser(ele)} sx={boxSX} >
-                            <Box> <Image src={ele.picture} /> </Box>
-                            <Box> <Typography pl="20px" fontFamily={'Lora'}> {ele.name}</Typography></Box>
-                        </Box>
-                            <Divider />
-                        </>} </Box>
+            {people != "" ?
+                <>  {people?.map((ele) => (
+                    <Box key={Math.random()}>
+                        {accountDetails.sub != ele.sub
+                            &&
+                            <> <Box display={'flex'} onClick={() => sendUser(ele)} sx={boxSX} >
+                                <Box> <Image src={ele.picture} /> </Box>
+                                <Box> <Typography pl="20px" fontFamily={'Lora'}> {ele.name}</Typography></Box>
+                            </Box>
+                                <Divider />
+                            </>} </Box>
 
-            ))}
+                ))}</>
+                :  <Box> <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box>  <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box></Box>}
+       
         </Box>
     );
 }

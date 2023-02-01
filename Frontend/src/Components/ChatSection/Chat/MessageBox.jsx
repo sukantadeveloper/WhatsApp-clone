@@ -1,4 +1,4 @@
-import { Box, styled, Typography } from '@mui/material';
+import { Box, Skeleton, styled, Typography } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useRef } from 'react';
 import { useContext } from 'react';
@@ -34,19 +34,16 @@ function MessageBox({ message }) {
     const { accountDetails } = useContext(AccountContext);
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ transition: "smooth" })
-     
-    }, [message]);
 
+    }, [message]);
     return (
         <ParentWrapper height="76vh" overflow={'scroll'} className="parent" padding='10px 20px' >
-
-
             {message?.map((ele) => (
                 <Box key={Math.random()} ref={scrollRef}>
                     {ele.senderId == accountDetails.sub ?
                         <SenderMessage mb={'5px'} >
-                            {ele.type == "file" ? <ImageFile ele={ele} /> :
-                                <TextFile ele={ele} />}
+                            <>  {ele.type == "file" ? <ImageFile ele={ele} /> :
+                                <TextFile ele={ele} />}</>
                         </SenderMessage>
 
                         : <ReceviderMessage mb={'5px'}>
@@ -57,7 +54,6 @@ function MessageBox({ message }) {
             )
             )
             }
-
 
         </ParentWrapper>
     );
