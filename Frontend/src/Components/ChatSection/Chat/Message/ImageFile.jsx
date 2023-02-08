@@ -5,7 +5,8 @@ import { downloadMedia } from '../../../CommonFile/DownloadMedia';
 import { FormatDate } from '../../../CommonFile/FormatDate';
 import DownloadIcon from '@mui/icons-material/Download';
 const Image = styled('img')({
-   width:"300px",
+   width:"250px",
+   maxHeight:"350px"
 
 })
 
@@ -13,7 +14,7 @@ function ImageFile({ ele }) {
     return (
         <Box> {ele?.text?.includes('.pdf') ?
             <Box display="flex" position={'relative'}>
-                <img src="/Images/pdf.webp" alt="pdf-icon" style={{ width: 80 }} />
+                <img src="/Images/pdf.webp" alt="pdf-icon" style={{ width: 60 }} />
                 <Box display={'block'}>
                     <Typography style={{ fontSize: 14, wordBreak: 'break-word' }} >{ele?.text?.split("/").pop()}</Typography>
                     <Box position={'absolute'} bottom='0' right={'0'} fontSize="11px">

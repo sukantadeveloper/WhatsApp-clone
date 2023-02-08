@@ -44,8 +44,6 @@ function LoginBox() {
     }
     useEffect(() => {
         SetAccountDetails(aa);
-        console.log(logout, "logout")
-        console.log(accountDetails, "ac");
     }, [send, logout])
 
     return (

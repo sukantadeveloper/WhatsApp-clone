@@ -36,7 +36,7 @@ function ChatDilogBox() {
                 open={true} PaperProps={{ sx: DialogBoxStyle }}>
                 <Box display={'flex'} justifyContent='space-around' >
 
-                    <LeftSide>
+                    <LeftSide >
                         <MenuHeader />
                         <SearchBox setSearchKey={setSearchKey}/>
                         <Conversations searchKey={searchKey}/>

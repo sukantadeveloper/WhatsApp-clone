@@ -46,7 +46,7 @@ function Conversations({ searchKey }) {
     }, [accountDetails])
 
     return (
-        <Box height='100vh' >
+        <Box height="85vh" overflow={'scroll'} className="parent">
             {people != "" ?
                 <>  {people?.map((ele) => (
                     <Box key={Math.random()}>
@@ -60,8 +60,8 @@ function Conversations({ searchKey }) {
                             </>} </Box>
 
                 ))}</>
-                :  <Box> <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box>  <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded"  height={"60px"} /></Box></Box>}
-       
+                : <Box> <Box mt={'6px'}> <Skeleton variant="rounded" height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded" height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded" height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded" height={"60px"} /></Box>  <Box mt={'6px'}> <Skeleton variant="rounded" height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded" height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded" height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded" height={"60px"} /></Box> <Box mt={'6px'}> <Skeleton variant="rounded" height={"60px"} /></Box></Box>}
+
         </Box>
     );
 }

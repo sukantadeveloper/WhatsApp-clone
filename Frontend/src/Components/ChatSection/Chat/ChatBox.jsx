@@ -12,7 +12,7 @@ import MessageBox from './MessageBox';
 function ChatBox() {
     const { accountDetails, person, socket } = useContext(AccountContext);
     const [Text, setText] = useState()
-    const [file, setFile] = useState();
+    const [file, setFile] = useState(null);
     const [image, setImage] = useState();
     const [conversation, setConversation] = useState('');
     const [message, setMessage] = useState([])
@@ -38,7 +38,6 @@ function ChatBox() {
         incommingMessages && conversation?.members?.includes(incommingMessages.senderId)
             && setMessage(prev => [...prev, incommingMessages])
     }, [incommingMessages, conversation])
-
     const storeMessage = async (e) => {
         if (!Text) return
         if (e.key == "Enter") {
@@ -51,7 +50,7 @@ function ChatBox() {
                     type: 'file',
                     text: image
                 }
-            } else if(Text!=null) {
+            } else  {
                 message = {
                     senderId: accountDetails?.sub,
                     receiverId: person?.sub,
@@ -65,7 +64,7 @@ function ChatBox() {
             await newMessage(message) }
             setText('');
             setImage('');
-            setFile('');
+            setFile(null);
             setRealTimeView(p => !p);
 
         }
