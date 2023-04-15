@@ -6,6 +6,9 @@ import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { styled } from '@mui/system';
 import { uploadFile } from '../../AllApi/Api';
 import axios from 'axios'
+import ScheduleSendIcon from '@mui/icons-material/ScheduleSend';
+import SendIcon from '@mui/icons-material/Send';
+import PendingIcon from '@mui/icons-material/Pending';
 const InputField = styled(InputBase)`
     width: 100%;
     padding: 16px;
@@ -20,32 +23,35 @@ const InputField = styled(InputBase)`
 const Attatcher = styled(AttachFileIcon)`
 transform: 'rotate(10deg)'
 `
-function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
+function ChatFooter({ setText, storeMessage, value, setFile, file, setImage, handleSubmit, sendLoading }) {
     const getImage = async () => {
-        if (file) {
-          
-            if (file.name.includes('.pdf')) {
-                  console.log(file, "done");
-                const data = new FormData();
-                data.append("name", file.name);
-                data.append("file", file);
-                const response = await uploadFile(data);
-                setImage(response.data);
-            }
-            else {
-                const data = new FormData();
-                data.append("file", file);
-                data.append("upload_preset", "whatsapp");
-                const res = await axios.post("https://api.cloudinary.com/v1_1/dz84rrvfb/image/upload", data)
-                setImage(res.data.secure_url);
-                console.log(res.data.secure_url, "after convert")
-            }
+        // if (file) {
+        //     if (file.name.includes('.pdf')) {
+        //           console.log(file, "done");
+        //         const data = new FormData();
+        //         data.append("name", file.name);
+        //         data.append("file", file);
+        //         const response = await uploadFile(data);
+        //         setImage(response.data);
+        //     }
+        //     else {
+        //         const data = new FormData();
+        //         data.append("file", file);
+        //         data.append("upload_preset", "whatsapp");
+        //         const res = await axios.post("https://api.cloudinary.com/v1_1/dz84rrvfb/image/upload", data)
+        //         setImage(res.data.secure_url);
+        //         console.log(res.data.secure_url, "after convert")
+        //     }
 
-        }
+        // }
+
     }
+    console.log("Child components is runnning");
+     console.log(sendLoading, "loading")
     useEffect(() => {
+       
         getImage();
-    }, [file])
+    }, [sendLoading])
 
     const onFileChange = (e) => {
         setText(e.target.files[0].name);
@@ -68,8 +74,10 @@ function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
 
                 />
             </Box>
-            <Box width="80%"> <InputField onChange={(e) => setText(e.target.value)} value={value} onKeyPress={storeMessage} type='text' placeholder='Type a message' inputProps={{ 'aria-label': 'search' }} /></Box>
-            <Box width="5%"><MicIcon /></Box>
+            <Box width="80%" display={'flex'} alignItems={'center'}> 
+            <InputField disabled={sendLoading} onChange={(e) => setText(e.target.value)} value={value} onKeyPress={storeMessage} type='text' style={{marginRight:"10px"}} placeholder='Type a message' inputProps={{ 'aria-label': 'search' }} /> </Box>
+            {!sendLoading ? <Box width="5%" className="MouseHover" onClick={handleSubmit}> <SendIcon /></Box>
+                : <Box width="5%"> <ScheduleSendIcon /></Box>}
         </Box>
     );
 }
