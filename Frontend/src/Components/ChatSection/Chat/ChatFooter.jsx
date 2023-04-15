@@ -23,18 +23,24 @@ transform: 'rotate(10deg)'
 function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
     const getImage = async () => {
         if (file) {
-            // const data = new FormData();
-            // data.append("name", file.name);
-            // data.append("file", file);
-            // const response = await uploadFile(data);
-            // setImage(response.data);
-            const data = new FormData();
-            data.append("file", file);
-            data.append("upload_preset", "whatsapp");
-            const res = await axios.post("https://api.cloudinary.com/v1_1/dz84rrvfb/image/upload", data)
-            //  const response = await uploadFile(data);
-            setImage(res.data.secure_url);
-            console.log(res.data.secure_url,"after convert")
+          
+            if (file.name.includes('.pdf')) {
+                  console.log(file, "done");
+                const data = new FormData();
+                data.append("name", file.name);
+                data.append("file", file);
+                const response = await uploadFile(data);
+                setImage(response.data);
+            }
+            else {
+                const data = new FormData();
+                data.append("file", file);
+                data.append("upload_preset", "whatsapp");
+                const res = await axios.post("https://api.cloudinary.com/v1_1/dz84rrvfb/image/upload", data)
+                setImage(res.data.secure_url);
+                console.log(res.data.secure_url, "after convert")
+            }
+
         }
     }
     useEffect(() => {
@@ -45,7 +51,7 @@ function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
         setText(e.target.files[0].name);
         setFile(e.target.files[0]);
     }
-    
+
 
     return (
         <Box bgcolor={'#ededed'} height='62px' display={'flex'} justifyContent='space-around' alignItems={'center'}>
