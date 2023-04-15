@@ -112,16 +112,18 @@ function ChatBox() {
                 const data = new FormData();
                 data.append("name", file.name);
                 data.append("file", file);
-                const response = await uploadFile(data);
-                setImage(response.data);
+                res = await uploadFile(data);
+                setImage(res.data);
+                setSendLoading(false);
             }
             else {
+                setSendLoading(true);
                 const data = new FormData();
                 data.append("file", file);
                 data.append("upload_preset", "whatsapp");
                 res = await axios.post("https://api.cloudinary.com/v1_1/dz84rrvfb/image/upload", data)
                 setImage(res.data.secure_url);
-
+                setSendLoading(false);
             }
 
         }
@@ -133,7 +135,7 @@ function ChatBox() {
                 receiverId: person?.sub,
                 conversationId: conversation?._id,
                 type: 'file',
-                text: res.data.secure_url
+                text: res?.data?.secure_url || res?.data
             }
         } else {
             message = {
@@ -147,7 +149,8 @@ function ChatBox() {
         if (message != "") {
             setSendLoading(true);
             socket.current.emit("sendMessage", message);
-            await newMessage(message)
+            const rd = await newMessage(message)
+            console.log(rd?.data, "rd")
             setSendLoading(false);
         }
         setText('');

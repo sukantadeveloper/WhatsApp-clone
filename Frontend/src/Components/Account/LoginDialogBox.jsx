@@ -30,7 +30,7 @@ const ListStyle = styled(List)`
     }
 `;
 function LoginBox() {
-    var aa = JSON.parse(sessionStorage.getItem("user"))
+    var aa = JSON.parse(localStorage.getItem("user"))
     const { SetAccountDetails, accountDetails, logout } = useContext(AccountContext);
     const [send, setSend] = useState();
     const handleError = () => {
@@ -39,7 +39,7 @@ function LoginBox() {
     const handleSuccess = (res) => {
         const decoded = jwt_decode(res.credential)
         addUser(decoded);
-        sessionStorage.setItem("user", JSON.stringify(decoded))
+        localStorage.setItem("user", JSON.stringify(decoded))
         setSend(decoded);
     }
     useEffect(() => {

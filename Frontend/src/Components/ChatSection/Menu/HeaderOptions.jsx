@@ -24,7 +24,7 @@ const HeaderOptions = () => {
     };
 
     const handleLogout = () => {
-        sessionStorage.clear("user");
+        localStorage.clear("user");
         window.location.reload();
     }
 
