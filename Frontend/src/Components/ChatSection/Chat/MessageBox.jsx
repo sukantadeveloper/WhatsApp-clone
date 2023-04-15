@@ -34,8 +34,8 @@ function MessageBox({ message }) {
     const { accountDetails } = useContext(AccountContext);
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ transition: "smooth" })
-
     }, [message]);
+    
     return (
         <ParentWrapper height="76vh" overflow={'scroll'} className="parent" padding='10px 20px' >
             {message?.map((ele) => (

@@ -1,6 +1,6 @@
 import grid from "gridfs-stream";
 import mongoose from "mongoose";
-const url = "https://whatsappbackend-mfgj.onrender.com";
+// const url = "https://whatsappbackend-mfgj.onrender.com";
 
 let gfs;
 let gridFsBucket;

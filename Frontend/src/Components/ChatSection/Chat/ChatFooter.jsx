@@ -5,6 +5,7 @@ import MicIcon from '@mui/icons-material/Mic';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import { styled } from '@mui/system';
 import { uploadFile } from '../../AllApi/Api';
+import axios from 'axios'
 const InputField = styled(InputBase)`
     width: 100%;
     padding: 16px;
@@ -22,11 +23,18 @@ transform: 'rotate(10deg)'
 function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
     const getImage = async () => {
         if (file) {
+            // const data = new FormData();
+            // data.append("name", file.name);
+            // data.append("file", file);
+            // const response = await uploadFile(data);
+            // setImage(response.data);
             const data = new FormData();
-            data.append("name", file.name);
             data.append("file", file);
-            const response = await uploadFile(data);
-            setImage(response.data);
+            data.append("upload_preset", "whatsapp");
+            const res = await axios.post("https://api.cloudinary.com/v1_1/dz84rrvfb/image/upload", data)
+            //  const response = await uploadFile(data);
+            setImage(res.data.secure_url);
+            console.log(res.data.secure_url,"after convert")
         }
     }
     useEffect(() => {
@@ -37,6 +45,7 @@ function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
         setText(e.target.files[0].name);
         setFile(e.target.files[0]);
     }
+    
 
     return (
         <Box bgcolor={'#ededed'} height='62px' display={'flex'} justifyContent='space-around' alignItems={'center'}>
