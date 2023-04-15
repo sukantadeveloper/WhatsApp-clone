@@ -13,25 +13,26 @@ const MenuOption = styled(MenuItem)`
 
 
 const HeaderOptions = () => {
-        const [open, setOpen] = useState(false);
-        const [openDrawer, setOpenDrawer] = useState(false);
-        const handleClick = (event) => {
-            setOpen(event.currentTarget);
-        };
+    const [open, setOpen] = useState(false);
+    const [openDrawer, setOpenDrawer] = useState(false);
+    const handleClick = (event) => {
+        setOpen(event.currentTarget);
+    };
 
-        const handleClose = () => {
-            setOpen(null);
-        };
+    const handleClose = () => {
+        setOpen(null);
+    };
 
-        const handleLogout = () => {
-            sessionStorage.clear("user");
-            window.location.reload();
-        }
+    const handleLogout = () => {
+        sessionStorage.clear("user");
+        window.location.reload();
+    }
 
     return (
         <>
-            <MoreVert onClick={handleClick} />
+            <MoreVert onClick={handleClick} className='MouseHover' />
             <Menu
+
                 anchorEl={open}
                 keepMounted
                 open={open}

@@ -57,7 +57,7 @@ function ChatFooter({ setText, storeMessage, value, setFile, file, setImage }) {
         <Box bgcolor={'#ededed'} height='62px' display={'flex'} justifyContent='space-around' alignItems={'center'}>
             <Box width={'10%'} display='flex' justifyContent={'space-around'}> <InsertEmoticonIcon />
 
-                <label htmlFor="fileInput">
+                <label htmlFor="fileInput" className='MouseHover' >
                     <Attatcher />
                 </label>
                 <input

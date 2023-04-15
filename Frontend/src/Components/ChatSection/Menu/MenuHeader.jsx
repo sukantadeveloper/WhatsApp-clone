@@ -41,7 +41,8 @@ function MenuHeader() {
         <>
             <Parent>
                 <Image src={accountDetails.picture}
-                 onClick={() => setOpenDrawer(true)}
+                    className='MouseHover'
+                    onClick={() => setOpenDrawer(true)}
                 />
                 <ChildWrapper>
                     <MessageIcon />

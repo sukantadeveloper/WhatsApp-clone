@@ -8,3 +8,6 @@ body {
 code {
   font-family: Lora;
 }
+.MouseHover:hover{
+  cursor: pointer;
+}
