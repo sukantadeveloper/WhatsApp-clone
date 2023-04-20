@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { AccountContext } from '../../../Context/AccountContextProvider';
 import HeaderOptions from '../Menu/HeaderOptions';
+import UserDrawer from '../../Drawer/UserDrawer';
 
 const Parent = styled(Box)`
     height: 42px;
@@ -33,6 +34,8 @@ const Image = styled('img')({
     borderRadius: '50%'
 })
 function ChatHead() {
+    const [openDrawer, setOpenDrawer] = useState(false);
+
 
     const { person, activeUsers } = useContext(AccountContext);
 
@@ -41,7 +44,8 @@ function ChatHead() {
         <>
             <Parent width={{ sm: "65%", md: "67%", lg: "68%" }} zIndex="1500">
                 <Image src={person.picture}
-
+                    onClick={() => setOpenDrawer(true)}
+                    className='MouseHover' 
                 />
                 <Box pl="15px" fontStyle={'oblique'}>
                     <Typography fontSize={'15px'} fontFamily={'Lora'}>{person.name}</Typography>
@@ -49,10 +53,11 @@ function ChatHead() {
                 </Box>
                 <ChildWrapper>
                     <SearchIcon />
-                    <HeaderOptions />
+                    {/* <HeaderOptions /> */}
 
                 </ChildWrapper>
             </Parent>
+            <UserDrawer open={openDrawer} setOpen={setOpenDrawer} profile={true} />
 
         </>
     );

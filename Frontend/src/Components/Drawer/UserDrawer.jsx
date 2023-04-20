@@ -55,9 +55,10 @@ const drawerStyle = {
     boxShadow: 'none'
 }
 
-const ProfileDrawer = ({ open, setOpen }) => {
+const UserDrawer = ({ open, setOpen }) => {
 
-    const { accountDetails } = useContext(AccountContext);
+    const { person } = useContext(AccountContext);
+
 
     const handleClose = () => {
         setOpen(false);
@@ -75,11 +76,11 @@ const ProfileDrawer = ({ open, setOpen }) => {
                     <Typography>Profile</Typography>
                 </Header>
                 <ImageContainer>
-                    <Image src={accountDetails.picture} alt="pic" />
+                    <Image src={person.picture} alt="pic" />
                 </ImageContainer>
                 <BoxWrapper>
-                    <Typography>Your name</Typography>
-                    <Typography>{accountDetails.name}</Typography>
+                    <Typography>Name</Typography>
+                    <Typography>{person.name}</Typography>
                 </BoxWrapper>
                 <DescriptionBox>
                     <Typography>This is not your username or pin. This name will be visible to your WhatsApp contacts.</Typography>
@@ -93,4 +94,4 @@ const ProfileDrawer = ({ open, setOpen }) => {
     )
 }
 
-export default ProfileDrawer;
+export default UserDrawer;

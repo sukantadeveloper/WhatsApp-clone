@@ -182,7 +182,7 @@ function ChatBox() {
     }, [person?.sub])
 
     return (
-        <Box >
+        <Box>
             <ChatHead />
             <Box pt="60px" ref={scrollRef}>
                 <MessageBox message={message} />
