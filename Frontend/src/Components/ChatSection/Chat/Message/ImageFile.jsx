@@ -5,7 +5,8 @@ import { downloadMedia } from '../../../CommonFile/DownloadMedia';
 import { FormatDate } from '../../../CommonFile/FormatDate';
 import DownloadIcon from '@mui/icons-material/Download';
 const Image = styled('img')({
-   width:"250px",
+  maxWidth:"250px",
+  minWidth:"180px",
    maxHeight:"350px"
 
 })
