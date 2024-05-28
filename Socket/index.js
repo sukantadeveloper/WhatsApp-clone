@@ -2,7 +2,7 @@ import { Server } from 'socket.io';
 
 const io = new Server(8000, {
     cors: {
-        origin: 'https://new-whatsapp.netlify.app',
+        origin: 'https://chat-app-sukanta.vercel.app',
     }, 
 })
 

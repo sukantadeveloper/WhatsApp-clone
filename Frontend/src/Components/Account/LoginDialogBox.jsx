@@ -64,7 +64,7 @@ function LoginBox() {
                     </Box>
 
                     <Box width={'28%'}>
-                        <QRStyle src='https://i.stack.imgur.com/nGqGw.png' />
+                        <QRStyle src="/random_qr.webp" alt='QR code' />
                         <Box width={'90%'} margin='auto' paddingLeft={'30px'}>  <GoogleLogin
                             onSuccess={handleSuccess}
                             onError={handleError}
